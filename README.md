@@ -34,14 +34,43 @@ npm start                 # abre Remotion Studio para previsualizar en el navega
 npm run render            # genera out/promo.mp4 (horizontal)
 npm run render:vertical   # genera out/promo-vertical.mp4 (vertical)
 npm run still             # thumbnail PNG de un frame
+npm run audio             # regenera música + voz (ver sección Audio)
 ```
 
-### Música de fondo
-Poné un `music.mp3` en `public/` y renderizá con:
+## 🔊 Audio: música y voz en off
+
+El video incluye **música original** (synthwave / electrónica, 112 BPM, generada por
+síntesis con numpy) y **voz en off** en español rioplatense (Piper TTS, voz
+`es_AR-daniela-high`, 100 % offline). La música baja de volumen automáticamente
+mientras habla la locutora (ducking).
+
+### Guion
+
+| Escena | Locución |
+|--------|----------|
+| Intro | Toda gran empresa empieza con una línea de código. |
+| Marca | Somos DevForge. Software a medida, código que escala. |
+| Servicios | Desarrollamos sitios web, apps móviles, automatizaciones y sistemas en la nube. Todo pensado para que tu negocio crezca sin límites. |
+| Stats | Más de cincuenta proyectos entregados, código cien por ciento a medida, y soporte técnico las veinticuatro horas. |
+| CTA | ¿Tenés una idea? La convertimos en software. Escribinos hoy, y arrancamos. |
+
+El guion vive en **`tools/guion.json`**. Para cambiar el texto o la voz:
 
 ```bash
-npx remotion render Promo out/promo.mp4 --props='{"withMusic":true}'
+pip install piper-tts numpy scipy     # una sola vez
+python3 tools/make_voice.py           # regenera public/voice/*.mp3 y src/voice-cues.ts
+python3 tools/make_voice.py es_ES-davefx-medium   # voz masculina (acento de España)
+python3 tools/make_music.py           # regenera public/music.mp3 (BPM, drop, etc. en el script)
 ```
+
+Otras voces disponibles: `es_MX-claude-high` (masculina, México), `es_ES-sharvard-medium`.
+Los modelos se descargan solos a `.voices/` la primera vez. Escribí los números en letras
+("cincuenta") para que la locutora los pronuncie bien.
+
+> Si querés usar una locución grabada por una persona, reemplazá los `public/voice/vo-*.mp3`
+> y ajustá `durationInFrames` en `src/voice-cues.ts`.
+
+Para renderizar **sin audio**: `npm run render:mute`.
 
 ## Estructura
 
@@ -52,5 +81,13 @@ src/
   Promo.tsx            ← secuencia de escenas + transiciones
   scenes/              ← Intro, Brand, Services, Stats, CTA
   components/          ← CodeRain, Grid, GlitchText, Typewriter, Terminal, Particles...
-public/fonts/          ← JetBrains Mono y Space Grotesk (locales, sin depender de internet)
+  voice-cues.ts        ← duraciones de cada línea de voz (generado)
+tools/
+  guion.json           ← guion de la locución
+  make_voice.py        ← genera la voz en off con Piper
+  make_music.py        ← compone la música
+public/
+  fonts/               ← JetBrains Mono y Space Grotesk (locales, sin depender de internet)
+  music.mp3            ← pista musical
+  voice/vo-*.mp3       ← un clip por escena
 ```

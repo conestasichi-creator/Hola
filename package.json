@@ -6,6 +6,8 @@
   "scripts": {
     "start": "remotion studio",
     "render": "remotion render Promo out/promo.mp4",
+    "render:mute": "remotion render Promo out/promo-mute.mp4 --props=\"{\\\"withMusic\\\":false,\\\"withVoice\\\":false}\"",
+    "audio": "python3 tools/make_music.py && python3 tools/make_voice.py",
     "render:vertical": "remotion render PromoVertical out/promo-vertical.mp4",
     "still": "remotion still Promo out/thumbnail.png --frame=120"
   },

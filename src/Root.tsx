@@ -12,7 +12,7 @@ export const RemotionRoot: React.FC = () => (
       fps={30}
       width={1920}
       height={1080}
-      defaultProps={{ withMusic: false }}
+      defaultProps={{ withMusic: true, withVoice: true }}
     />
     {/* Vertical 9:16 — Reels, TikTok, Shorts (misma escena, escalada) */}
     <Composition
@@ -22,7 +22,7 @@ export const RemotionRoot: React.FC = () => (
       fps={30}
       width={1080}
       height={1920}
-      defaultProps={{ withMusic: false }}
+      defaultProps={{ withMusic: true, withVoice: true }}
     />
   </>
 );

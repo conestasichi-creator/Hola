@@ -1,0 +1,30 @@
+{
+  "voice": "es_AR-daniela-high",
+  "lines": [
+    {
+      "scene": "intro",
+      "offsetFrames": 20,
+      "text": "Toda gran empresa empieza con una línea de código."
+    },
+    {
+      "scene": "brand",
+      "offsetFrames": 14,
+      "text": "Somos DevForge. Software a medida, código que escala."
+    },
+    {
+      "scene": "services",
+      "offsetFrames": 12,
+      "text": "Desarrollamos sitios web, apps móviles, automatizaciones y sistemas en la nube. Todo pensado para que tu negocio crezca sin límites."
+    },
+    {
+      "scene": "stats",
+      "offsetFrames": 12,
+      "text": "Más de cincuenta proyectos entregados, código cien por ciento a medida, y soporte técnico las veinticuatro horas."
+    },
+    {
+      "scene": "cta",
+      "offsetFrames": 10,
+      "text": "¿Tenés una idea? La convertimos en software. Escribinos hoy, y arrancamos."
+    }
+  ]
+}
