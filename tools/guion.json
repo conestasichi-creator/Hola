@@ -1,30 +1,18 @@
 {
-  "voice": "es_AR-daniela-high",
+  "voice": "es_MX-claude-high",
+  "_voz": "Voz masculina latinoamericana (seseo). La única voz argentina de Piper (es_AR-daniela-high, femenina) pronuncia mal varias palabras y empeora al bajarle el tono, así que se usa la voz masculina más clara. Alternativa de España: es_ES-davefx-medium.",
+  "synthesis": { "lengthScale": 1.15, "noiseScale": 0.4, "noiseWScale": 0.6 },
+  "transform": { "mode": "pitch", "pitchRatio": 0.88 },
+  "phonemeFixes": {
+    "_comment": "Correcciones de pronunciación en fonemas IPA (espeak-ng). Freshi se dice con 'sh'.",
+    "fɾˈesi ðˈeb": "fɾˈeʃi dˈev",
+    "fɾˌesiðˈeb": "fɾˈeʃi dˈev"
+  },
   "lines": [
-    {
-      "scene": "intro",
-      "offsetFrames": 20,
-      "text": "Toda gran empresa empieza con una línea de código."
-    },
-    {
-      "scene": "brand",
-      "offsetFrames": 14,
-      "text": "Somos DevForge. Software a medida, código que escala."
-    },
-    {
-      "scene": "services",
-      "offsetFrames": 12,
-      "text": "Desarrollamos sitios web, apps móviles, automatizaciones y sistemas en la nube. Todo pensado para que tu negocio crezca sin límites."
-    },
-    {
-      "scene": "stats",
-      "offsetFrames": 12,
-      "text": "Más de cincuenta proyectos entregados, código cien por ciento a medida, y soporte técnico las veinticuatro horas."
-    },
-    {
-      "scene": "cta",
-      "offsetFrames": 10,
-      "text": "¿Tenés una idea? La convertimos en software. Escribinos hoy, y arrancamos."
-    }
+    { "scene": "intro",    "offsetFrames": 20, "text": "Toda gran empresa empieza con una línea de código." },
+    { "scene": "brand",    "offsetFrames": 12, "text": "Somos FreshiDev. Hacemos software a medida, con código que escala." },
+    { "scene": "services", "offsetFrames": 12, "text": "Desarrollamos sitios web, aplicaciones móviles, automatizaciones y sistemas en la nube. Todo pensado para que tu negocio crezca sin límites." },
+    { "scene": "stats",    "offsetFrames": 12, "text": "Más de cincuenta proyectos entregados, código cien por ciento a medida, y soporte técnico las veinticuatro horas." },
+    { "scene": "cta",      "offsetFrames": 10, "text": "¿Tenés una idea? La convertimos en software. Escribinos hoy, y arrancamos." }
   ]
 }

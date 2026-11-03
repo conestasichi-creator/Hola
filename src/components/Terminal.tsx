@@ -5,7 +5,7 @@ import { Typewriter } from "./Typewriter";
 
 type Props = { lines: string[]; startFrame?: number; width?: number; fontSize?: number; title?: string };
 
-export const Terminal: React.FC<Props> = ({ lines, startFrame = 0, width = 1100, fontSize = 30, title = "bash — devforge" }) => {
+export const Terminal: React.FC<Props> = ({ lines, startFrame = 0, width = 1100, fontSize = 30, title = "bash — freshidev" }) => {
   const frame = useCurrentFrame();
   const cps = 1.1;
   const gap = 10;

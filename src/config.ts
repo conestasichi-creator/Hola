@@ -4,9 +4,9 @@
 
 export const brand = {
   // Nombre del negocio (se muestra con efecto glitch)
-  name: "DevForge",
+  name: "Freshi",
   // Extensión / sufijo que aparece en otro color (puede ir vacío)
-  suffix: ".dev",
+  suffix: "Dev",
   // Frase corta debajo del nombre
   tagline: "Software a medida. Código que escala.",
   // Lo que escribe la terminal en la intro
@@ -52,10 +52,10 @@ export const brand = {
   cta: {
     headline: "¿Tenés una idea?",
     sub: "La convertimos en software.",
-    contact: "hola@devforge.dev",
+    contact: "hola@freshidev.com",
     phone: "+54 9 11 1234-5678",
-    web: "www.devforge.dev",
-    social: "@devforge.dev",
+    web: "www.freshidev.com",
+    social: "@freshidev",
   },
 };
 

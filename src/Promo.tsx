@@ -20,10 +20,10 @@ export type PromoProps = { withMusic: boolean; withVoice: boolean };
 // Duraciones en frames (30 fps)
 export const SCENES: Record<SceneId, number> = {
   intro: 150,
-  brand: 130,
-  services: 270,
-  stats: 200,
-  cta: 210,
+  brand: 210,
+  services: 355,
+  stats: 270,
+  cta: 230,
 };
 const T = 20; // duración de cada transición
 const ORDER: SceneId[] = ["intro", "brand", "services", "stats", "cta"];

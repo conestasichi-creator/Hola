@@ -4,7 +4,7 @@ Video publicitario para negocio de desarrollo de software, hecho con
 [Remotion](https://www.remotion.dev) (React → video). Estética "hacker":
 lluvia de código, terminal que tipea, glitch RGB, grilla synthwave, neón y scanlines CRT.
 
-## Escenas (30 s total, 30 fps)
+## Escenas (~38 s total, 30 fps)
 
 | # | Escena | Qué pasa |
 |---|--------|----------|
@@ -24,7 +24,7 @@ Todo el contenido está en **`src/config.ts`**: nombre, tagline, líneas de la
 terminal, servicios, stats, contacto y paleta de colores. Editá ese archivo y
 listo, no hace falta tocar las escenas.
 
-Duración de cada escena: `SCENES` en `src/Promo.tsx`.
+Duración de cada escena: `SCENES` en `src/Promo.tsx`. Si cambiás el guion y una línea queda más larga que su escena, alargá esa escena ahí (los frames de cada clip están en `src/voice-cues.ts`).
 
 ## Comandos
 
@@ -39,18 +39,19 @@ npm run audio             # regenera música + voz (ver sección Audio)
 
 ## 🔊 Audio: música y voz en off
 
-El video incluye **música original** (synthwave / electrónica, 112 BPM, generada por
-síntesis con numpy) y **voz en off** en español rioplatense (Piper TTS, voz
-`es_AR-daniela-high`, 100 % offline). La música baja de volumen automáticamente
-mientras habla la locutora (ducking).
+El video incluye **música original** (chill / lo-fi tranquilo, 78 BPM: teclas tipo
+Rhodes, pad cálido, bajo suave y percusión liviana que entra con la marca; generada por
+síntesis con numpy, sin samples de terceros) y **voz en off** masculina generada con
+Piper TTS, 100 % offline. La música baja de volumen automáticamente mientras habla el
+locutor (ducking).
 
 ### Guion
 
 | Escena | Locución |
 |--------|----------|
 | Intro | Toda gran empresa empieza con una línea de código. |
-| Marca | Somos DevForge. Software a medida, código que escala. |
-| Servicios | Desarrollamos sitios web, apps móviles, automatizaciones y sistemas en la nube. Todo pensado para que tu negocio crezca sin límites. |
+| Marca | Somos FreshiDev. Hacemos software a medida, con código que escala. |
+| Servicios | Desarrollamos sitios web, aplicaciones móviles, automatizaciones y sistemas en la nube. Todo pensado para que tu negocio crezca sin límites. |
 | Stats | Más de cincuenta proyectos entregados, código cien por ciento a medida, y soporte técnico las veinticuatro horas. |
 | CTA | ¿Tenés una idea? La convertimos en software. Escribinos hoy, y arrancamos. |
 
