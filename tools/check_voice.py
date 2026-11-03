@@ -11,6 +11,7 @@ rec = sherpa_onnx.OfflineRecognizer.from_whisper(
     encoder=f"{M}/small-encoder.int8.onnx", decoder=f"{M}/small-decoder.int8.onnx",
     tokens=f"{M}/small-tokens.txt", language="es", task="transcribe", num_threads=4)
 files = sys.argv[1:] or sorted(glob.glob(os.path.join(ROOT, "public", "voice", "vo-*.mp3")))
+if len(files) == 1 and os.path.isdir(files[0]): files = sorted(glob.glob(os.path.join(files[0], "vo-*.mp3")))
 for f in files:
     with tempfile.NamedTemporaryFile(suffix=".wav") as tmp:
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", f, "-ac", "1", "-ar", "16000", tmp.name], check=True)

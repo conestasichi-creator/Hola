@@ -4,7 +4,7 @@ tipo Rhodes, pad cálido, bajo suave y una percusión muy liviana que entra con 
 Todo por síntesis con numpy/scipy (sin samples de terceros).
 
 Salida: public/music.mp3  (44.1 kHz, estéreo)
-Uso:    python3 tools/make_music.py [duración_en_segundos]   (por defecto 38.5)
+Uso:    python3 tools/make_music.py [duración_en_segundos] [salida.mp3]   (por defecto 38.5, public/music.mp3)
 """
 import os, subprocess, sys
 import numpy as np
@@ -147,7 +147,8 @@ fi = np.ones(N); fi[: SR] = np.linspace(0, 1, SR)
 mixL = np.tanh(L * 1.05) * fade * fi; mixR = np.tanh(R * 1.05) * fade * fi
 peak = max(np.abs(mixL).max(), np.abs(mixR).max())
 st = np.stack([mixL, mixR], axis=1) / peak * 0.95
-wav = os.path.join(ROOT, "public", "music.wav"); mp3 = os.path.join(ROOT, "public", "music.mp3")
+mp3 = os.path.abspath(sys.argv[2]) if len(sys.argv) > 2 else os.path.join(ROOT, "public", "music.mp3")
+wav = mp3[:-4] + ".wav"
 wavfile.write(wav, SR, (st * 32767).astype(np.int16))
 subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", wav, "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-b:a", "192k", mp3], check=True)
 os.remove(wav)

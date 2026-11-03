@@ -1,0 +1,22 @@
+{
+  "voice": "es_MX-claude-high",
+  "synthesis": { "lengthScale": 1.08, "noiseScale": 0.4, "noiseWScale": 0.6 },
+  "transform": { "mode": "pitch", "pitchRatio": 0.88 },
+  "phonemeFixes": {
+    "fɾˈesi ðˈeb": "fɾˈeʃi dˈev",
+    "fɾˌesiðˈeb": "fɾˈeʃi dˈev"
+  },
+  "lines": [
+    { "scene": "intro",      "offsetFrames": 25, "text": "¿Qué es el tiempo? Para entenderlo, hay que mirar cómo se mueve todo. Empecemos por casa." },
+    { "scene": "earthSpin",  "offsetFrames": 15, "text": "La Tierra gira sobre sí misma una vez cada veinticuatro horas: eso es un día. En el ecuador viajamos a mil seiscientos setenta kilómetros por hora, y ni lo sentimos." },
+    { "scene": "earthOrbit", "offsetFrames": 15, "text": "Y da una vuelta completa alrededor del Sol cada trescientos sesenta y cinco días: eso es un año. Casi mil millones de kilómetros, a treinta kilómetros por segundo." },
+    { "scene": "sunSpin",    "offsetFrames": 15, "text": "El Sol también gira. Pero como es una bola de gas, no gira todo junto: el ecuador tarda veinticinco días en dar una vuelta, y los polos, treinta y cinco. Adentro entrarían más de un millón de Tierras." },
+    { "scene": "light",      "offsetFrames": 15, "text": "Su luz tarda ocho minutos en llegar a nosotros: siempre vemos el Sol como era hace ocho minutos. Hasta Neptuno, la luz viaja más de cuatro horas." },
+    { "scene": "star",       "offsetFrames": 15, "text": "La estrella más cercana, Próxima Centauri, está a cuatro años luz: unos cuarenta billones de kilómetros. Mirar lejos, es mirar al pasado." },
+    { "scene": "galaxy",     "offsetFrames": 15, "text": "La Vía Láctea mide cien mil años luz, y tiene más de doscientos mil millones de estrellas. El Sol tarda doscientos treinta millones de años en darle una vuelta. Desde que nació, apenas dio veinte." },
+    { "scene": "universe",   "offsetFrames": 15, "text": "El universo observable mide noventa y tres mil millones de años luz, y tiene trece mil ochocientos millones de años." },
+    { "scene": "calendar",   "offsetFrames": 15, "text": "Si toda esa historia fuera un solo año, el Sol nacería el treinta y uno de agosto, los dinosaurios se extinguirían el treinta de diciembre, y los humanos apareceríamos a las once y cincuenta y dos de la última noche. Toda la historia escrita cabe en los últimos catorce segundos." },
+    { "scene": "relativity", "offsetFrames": 15, "text": "Y el tiempo no corre igual para todos: depende de la velocidad y de la gravedad. Los relojes de los satélites GPS adelantan treinta y ocho microsegundos por día, y hay que corregirlos para que el mapa de tu teléfono funcione." },
+    { "scene": "closing",    "offsetFrames": 20, "text": "Entonces, ¿qué es el tiempo? Es la forma en que medimos el cambio: una rotación, una órbita, un latido. Sin movimiento, no habría nada que contar." }
+  ]
+}

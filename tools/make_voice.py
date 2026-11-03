@@ -13,9 +13,10 @@ Salida:
   public/voice/vo-<escena>.mp3   un clip por línea
   src/voice-cues.ts              duraciones en frames para Remotion
 
-Uso:  python3 tools/make_voice.py [voz]      ej: python3 tools/make_voice.py es_ES-davefx-medium
+Uso:  python3 tools/make_voice.py [--guion tools/guion.json] [--out public/voice] [--cues src/voice-cues.ts] [--voice es_ES-davefx-medium]
+      python3 tools/make_voice.py --guion tools/guion-cosmos.json --out public/voice-cosmos --cues src/cosmos/voice-cues.ts
 """
-import json, os, subprocess, sys, tarfile, urllib.request
+import argparse, json, os, subprocess, sys, tarfile, urllib.request
 import numpy as np
 from scipy.io import wavfile
 from piper import PiperVoice, SynthesisConfig
@@ -25,9 +26,15 @@ VOICES = os.path.join(ROOT, ".voices")
 FPS = 30
 MODELS_URL = "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-{v}.tar.bz2"
 
-guion = json.load(open(os.path.join(ROOT, "tools", "guion.json"), encoding="utf-8"))
-voice = sys.argv[1] if len(sys.argv) > 1 else guion["voice"]
-transform = guion.get("transform") if len(sys.argv) < 2 else None
+ap = argparse.ArgumentParser()
+ap.add_argument("--guion", default=os.path.join(ROOT, "tools", "guion.json"))
+ap.add_argument("--out", default=os.path.join(ROOT, "public", "voice"), help="carpeta de salida de los mp3 (dentro de public/)")
+ap.add_argument("--cues", default=os.path.join(ROOT, "src", "voice-cues.ts"))
+ap.add_argument("--voice", default=None, help="forzar otra voz (desactiva transform)")
+args = ap.parse_args()
+guion = json.load(open(args.guion, encoding="utf-8"))
+voice = args.voice or guion["voice"]
+transform = guion.get("transform") if not args.voice else None
 fixes = {k: v for k, v in guion.get("phonemeFixes", {}).items() if not k.startswith("_")}
 
 model = os.path.join(VOICES, f"vits-piper-{voice}", f"{voice}.onnx")
@@ -57,8 +64,9 @@ def synth(text: str) -> np.ndarray:
         chunks += [np.asarray(audio, dtype=np.float32), SENT_GAP]
     return np.concatenate(chunks[:-1])
 
-out_dir = os.path.join(ROOT, "public", "voice")
+out_dir = os.path.abspath(args.out)
 os.makedirs(out_dir, exist_ok=True)
+rel_dir = os.path.relpath(out_dir, os.path.join(ROOT, "public"))
 
 # cadena de procesamiento ffmpeg
 chain = []
@@ -90,13 +98,13 @@ for line in guion["lines"]:
     os.remove(raw)
     dur = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", mp3]).strip())
     frames = int(round(dur * FPS))
-    cues.append({"scene": line["scene"], "file": f"voice/vo-{line['scene']}.mp3",
+    cues.append({"scene": line["scene"], "file": f"{rel_dir}/vo-{line['scene']}.mp3",
                  "offsetFrames": line["offsetFrames"], "durationInFrames": frames})
     print(f"{line['scene']:9s} {dur:5.2f}s  {frames:3d} frames  {line['text']}")
 
 ts = "// Generado por tools/make_voice.py — no editar a mano\n"
-ts += "export type SceneId = \"intro\" | \"brand\" | \"services\" | \"stats\" | \"cta\";\n"
+ts += "export type SceneId = " + " | ".join(json.dumps(l["scene"]) for l in guion["lines"]) + ";\n"
 ts += "export const voiceCues: { scene: SceneId; file: string; offsetFrames: number; durationInFrames: number }[] = "
 ts += json.dumps(cues, indent=2, ensure_ascii=False) + ";\n"
-open(os.path.join(ROOT, "src", "voice-cues.ts"), "w", encoding="utf-8").write(ts)
-print("OK ->", os.path.join("src", "voice-cues.ts"))
+open(args.cues, "w", encoding="utf-8").write(ts)
+print("OK ->", args.cues)

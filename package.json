@@ -9,6 +9,7 @@
     "render:mute": "remotion render Promo out/promo-mute.mp4 --props=\"{\\\"withMusic\\\":false,\\\"withVoice\\\":false}\"",
     "audio": "python3 tools/make_music.py && python3 tools/make_voice.py",
     "render:vertical": "remotion render PromoVertical out/promo-vertical.mp4",
+    "render:cosmos": "remotion render Cosmos out/cosmos.mp4 --concurrency=2",
     "still": "remotion still Promo out/thumbnail.png --frame=120"
   },
   "dependencies": {
